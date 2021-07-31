@@ -73,9 +73,9 @@ module.exports.getProductsList = async (req, res, next) => {
 module.exports.postCreateProduct = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log(errors);
     const error = new Error("Validation failed, entered data is incorrect...");
     error.statusCode = 422;
+    error.data = errors.errors.map(el => el.msg);
     next(error);
     return;
   }
@@ -125,6 +125,7 @@ module.exports.putUpdateProduct = async (req, res, next) => {
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed, entered data is incorrect...");
     error.statusCode = 422;
+    error.data = errors.errors.map(el => el.msg);
     next(error);
     return;
   }
@@ -192,6 +193,7 @@ module.exports.deleteRemoveProduct = async (req, res, next) => {
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed, entered data is incorrect...");
     error.statusCode = 422;
+    error.data = errors.errors.map(el => el.msg);
     next(error);
     return;
   }

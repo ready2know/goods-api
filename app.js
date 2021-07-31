@@ -8,8 +8,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
-// const authRouter = require("./routes/auth");
-// app.use("/auth", authRouter);
+const authRouter = require("./routes/auth");
+app.use("/auth", authRouter);
 
 const productsRouter = require("./routes/products");
 app.use("/products", productsRouter);

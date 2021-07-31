@@ -45,8 +45,8 @@ module.exports.postCreateCategory = async (req, res, next) => {
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed, entered data is incorrect...");
     error.statusCode = 422;
+    error.data = errors.errors.map(el => el.msg);
     next(error);
-    return;
     return;
   }
   const categoryName = req.body.name;
@@ -83,6 +83,7 @@ module.exports.putUpdateCategory = async (req, res, next) => {
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed, entered data is incorrect...");
     error.statusCode = 422;
+    error.data = errors.errors.map(el => el.msg);
     next(error);
     return;
   }
@@ -120,10 +121,10 @@ module.exports.deleteRemoveCategory = async (req, res, next) => {
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed, entered data is incorrect...");
     error.statusCode = 422;
+    error.data = errors.errors.map(el => el.msg);
     next(error);
     return;
   }
-
   const categoryId = req.params.categoryId;
   try {
     const category = await Category.findById(categoryId);

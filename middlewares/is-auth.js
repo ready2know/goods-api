@@ -15,16 +15,16 @@ module.exports = (req, res, next) => {
   try {
     decodedToken = jwt.verify(token, "holikovvladislav");
   } catch (err) {
-    console.error(err);
-    const error = new Error("Not authenticated.");
+    //console.error(err);
+    const error = new Error("Not valid token.");
     error.statusCode = 401;
     next(error);
     return;
   }
 
   if (!decodedToken) {
-    console.error(err);
-    const error = new Error("Not authenticated.");
+    //console.error(err);
+    const error = new Error("Not valid token.");
     error.statusCode = 401;
     next(error);
     return;

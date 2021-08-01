@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 
 const Product = require("../models/Product");
 const Category = require("../models/Category");
+const ProductCategory = require("../models/ProductCategory");
 const ProductsController = require("../controllers/products");
+
 
 describe("products-controller", function () {
   this.timeout(5000);
@@ -213,6 +215,9 @@ describe("products-controller", function () {
     Category.deleteMany({})
       .then(() => {
         return Product.deleteMany({});
+      })
+      .then(() => {
+        return ProductCategory.deleteMany({});
       })
       .then(() => {
         return mongoose.disconnect();

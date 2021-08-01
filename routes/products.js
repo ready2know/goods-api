@@ -14,13 +14,6 @@ router.post(
   isAuth,
   [
     body("name").trim().isLength({ min: 1 }).withMessage('name must be at least 1 char long'),
-    // body("categories").custom(arr=>{
-      
-    //   for(let id of arr){
-    //     if(id.lenght !== 24) return Promise.reject("Category id is not valid");
-    //   }
-    //   return Promise.resolve();
-    // })
   ],
   productsController.postCreateProduct
 );
